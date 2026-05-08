@@ -1,0 +1,101 @@
+@use "../abstracts" as core;
+@use "sass:map";
+@use "sass:list";
+
+.first-nav {
+  grid-row: 1/2;
+  grid-column: 1 / 9;
+
+  width: 100%;
+  height: 3rem; // antes 30px → 30 / 10 = 3rem
+  background-color: core.$color-secundario;
+  @include core.media(small) {
+    grid-column: 1;
+    grid-row: 1;
+    @include core.centrar(row, center, center);
+  }
+
+  &-list {
+    grid-row: 1/2;
+    grid-column: 1/9;
+    height: 100%; //para que se centre bien verticalmente
+    @include core.centrar(row, flex-end, center);
+    list-style: none;
+    padding-right: core.margin(4); //para echarlo un poco hacia la izquierda
+  }
+
+  a {
+    @include core.enlaces-nav();
+    align-items: center;
+
+    &:hover,
+    &:visited:hover {
+      @include core.hover-visited(list.nth(core.$colores, 2));
+    }
+    &:visited {
+      @include core.hover-visited(core.$enlace-visitado);
+    }
+  }
+}
+
+.second-nav {
+  grid-row: 2/2;
+  grid-column: 1 / 9;
+
+  align-self: center; //centra al elemento dentro de su celda de grid
+  @include core.navigation();
+  .second-nav-list {
+    justify-content: center; // sobreescribe el space-between del mixin
+  }
+  @include core.media(small) {
+    grid-column: 1;
+    grid-row: 3;
+
+    .second-nav-list {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  @include core.ocuparAncho();
+
+  padding-top: core.margin(3);
+  background-color: core.$color-primario;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1); // sombra → se queda en px
+  z-index: 9999; //para que este encima de todo lo que pongamos en el body
+  padding: 4rem 0; //antes 40px PARA QUE SALGA MAS NEGRO EN EL MENU ARRIBA Y ABAJO
+
+  &-contenido {
+    max-width: 100rem; //antes eran 1000px
+    margin: 0 auto;
+    @include core.centrar(row, space-between, flex-start);
+    gap: 6rem;
+  }
+
+  &-columna {
+    h3 {
+      font-size: core.$fuente-xs;
+      margin-bottom: core.margin(2);
+      color: core.$enlace-visitado;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        margin-bottom: core.margin(1);
+        a {
+          color: map.get(core.$colores, "blanco-roto");
+          font-size: core.$fuente-xs;
+          text-decoration: none;
+          &:hover {
+            color: core.$color-terciario;
+          }
+        }
+      }
+    }
+  }
+}

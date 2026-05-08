@@ -1,0 +1,15 @@
+@use "../abstracts" as core;
+
+.container {
+  @include core.grid-flexible(2);
+
+  width: 100%;
+  margin-top: core.margin(4);
+}
+
+.products-list {
+  grid-column: 1/-1;
+  padding: 0 2rem;
+  @include core.grid-flexible(2, 2rem);
+  grid-template-columns: repeat(auto-fit, minmax(40rem, 1fr));
+}

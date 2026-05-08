@@ -1,0 +1,55 @@
+@use "../abstracts" as core;
+@use "sass:math";
+@use "sass:map";
+
+.product-card {
+  @include core.grid-flexible(
+    1
+  ); //esto es para que el texto no se salga de la imagen
+
+  @include core.border_radius(2, core.$color-secundario);
+  //650px antes LA CARD CRECE CON EL CONTENDIO
+  &__media {
+    grid-area: 1/1; //para que el texto se posicione encima
+    width: 100%;
+
+    img {
+      width: 100%;
+      height: 65rem;
+      @include core.border_radius(2, core.$color-secundario);
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__content {
+    @include core.centrar(column, flex-end, flex-start);
+    grid-area: 1/1;
+    padding: 0.8rem 2rem; //separacion que hay arriba y abajo y derecha/izquierda
+    bottom: 0; //esto hace que el contenido salga, y se ponga abajo
+    width: 100%; //para que ocupe todo el ancho de la card
+    margin-bottom: core.margin(5);
+    gap: 1.8rem; //18 px antes
+    box-sizing: border-box; //para que el padding no se salga de la card
+  }
+  &__tittle {
+    color: core.$color-terciario;
+    font-weight: bold;
+    font-family: core.$fuente-principal;
+    font-size: 1.2rem; //12px antes
+  }
+  &__text {
+    color: white;
+    font-family: core.$fuente-principal;
+    font-weight: core.weight(2);
+    font-size: 2rem; //antes 20px
+  }
+  &__boton {
+    @include core.boton(white, black);
+
+    &:hover {
+      background-color: core.$enlace-visitado;
+      color: core.$color-primario;
+    }
+  }
+}

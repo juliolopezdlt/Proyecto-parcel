@@ -1,0 +1,62 @@
+@use "../abstracts" as core;
+@use "sass:map";
+
+.footer {
+  position: relative;
+  background-color: core.$color-secundario;
+  padding: 2rem 0; //espacio arriba y abajo para que respire
+  text-align: center;
+  margin-top: 4rem;
+  border-top: 2px solid #444;
+
+  &__text {
+    color: core.color-neutro(2);
+    font-size: core.$fuente-xs;
+    font-weight: core.weight(1);
+
+    margin: auto;
+  }
+
+  &__social {
+    grid-column: 1/-1;
+
+    @include core.centrar();
+    margin-top: core.margin(2);
+  }
+  &-content {
+    @include core.centrar(row, flex-start, flex-start);
+    margin-top: core.margin(3);
+    margin-bottom: core.margin(5);
+    gap: 8rem; // antes 80px → 80 / 10 = 8rem
+    list-style: none;
+    margin-left: core.margin(5);
+    &-list {
+      list-style: none;
+      gap: 1.2rem; //antes 12px
+      li {
+        list-style: none;
+        margin-bottom: 1.2rem; //antes 12px
+        a {
+          text-decoration: none; //quitar subrayadao enlace
+          color: map.get(core.$colores, "gris-claro");
+        }
+      }
+      li:first-child {
+        color: core.$color-primario;
+        font-weight: core.weight(3);
+        margin-bottom: core.margin(5);
+      }
+    }
+
+    p {
+      position: absolute; //para que tenga su propia posicion independientemente del container del footer
+      font-size: core.$fuente-xs;
+      @include core.ocuparAncho();
+      @include core.centrar(row, flex-end, center);
+      margin-right: core.margin(5);
+    }
+  }
+  p {
+    font-size: core.$fuente-xs;
+  }
+}

@@ -1,0 +1,48 @@
+@use "../abstracts" as core;
+
+.video {
+  position: relative; //para que los hijos se posicionen dentro de la pagina
+  width: 100%;
+  height: 100vh;
+  overflow: hidden; //esto hace que el video se corte cuando acaba la pagina, y no se agrande la pagina
+
+  &-bg {
+    position: absolute;
+    top: 0;
+    left: 0; // esto hace qu ignore todo lo que le dice la pagina
+    width: 100%;
+    height: 100%; // y con estos dos hacemos que se ajuste a la pagina entera
+    object-fit: cover; //para que rellene todo el espacio
+    z-index: 0;
+  }
+
+  &-contenido {
+    position: absolute;
+    bottom: 10%; //para que este abajo el texto
+    left: 5%; //un poco ecchado a la izquierda
+    z-index: 1;
+    color: core.$color-primario;
+    text-align: left;
+
+    h1 {
+      font-size: core.$fuente-l;
+      font-weight: core.weight(3);
+      text-transform: uppercase;
+      margin: 0 0 0.5rem 0;
+    }
+
+    p {
+      font-size: core.$fuente-s;
+      margin: 0 0 1.5rem 0;
+    }
+
+    button {
+      @include core.boton();
+
+      &:hover {
+        background-color: core.$color-terciario;
+        color: core.$color-primario;
+      }
+    }
+  }
+}

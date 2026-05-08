@@ -1,0 +1,193 @@
+@use "sass:map";
+@use "sass:list";
+
+/// @author Julio
+/// color primario de la aplicacion
+/// @type Color
+/// @group Colores
+$color-primario: black;
+/// color secundario
+/// @type Color
+/// @group Colores
+$color-secundario: #444141;
+/// color terciario
+/// @type Color
+/// @group Colores
+$color-terciario: white;
+/// color enlace visitado
+/// @type Color
+/// @group Colores
+$enlace-visitado: pink;
+/// color agua
+/// @type Color
+/// @group Colores
+$color-distinto: aqua;
+
+///tamaño fuente primer nav
+/// @type Number
+/// @group Fuentes
+$fuente-enana: 0.8rem;
+
+/// tamaño de fuente xs
+/// @type Number
+/// @group Fuentes
+$fuente-xs: 1.2rem; // antes 10px → con base 10px, 1rem = 10px
+/// tamaño de fuente s
+/// @type Number
+/// @group Fuentes
+$fuente-s: 2rem; // antes 20px → 20 / 10 = 2rem
+/// tamaño de fuente m
+/// @type Number
+/// @group Fuentes
+$fuente-m: 3rem; // antes 30px → 30 / 10 = 3rem
+/// tamaño de fuente L
+/// @type Number
+/// @group Fuentes
+$fuente-l: 4rem; // antes 40px → 40 / 10 = 4rem
+
+/// color container (gris)
+/// @type Color
+/// @group Colores
+$color-container: #c5c2c2;
+
+/// Tamaños para margenes
+/// @group Layout
+/// @type List
+$margins: (
+  0.25rem,
+  0.5rem,
+  1rem,
+  2rem,
+  3.5rem
+); // antes (2.5px, 5px, 10px, 20px, 35px)
+
+/// Tipos de secciones
+/// @group Layout
+/// @type List
+$tipo-section: ("uno", "dos", "tres");
+
+/// Mapa de colores con nombre clave-valor
+/// @group Colores
+/// @type Map
+$colores: (
+  "rojo": red,
+  "amarillo": yellow,
+  "azul": blue,
+  "rosa": pink,
+  "morado": purple,
+  "verde": green,
+  "blanco": white,
+  "negro": black,
+  "blanco-roto": lab(90.54% 1.35 0.47),
+  "gris-claro": #bcb3b3,
+);
+
+/// Colores neutros
+/// @group Colores
+/// @type List
+$colores-neutros: (black, grey, white);
+
+/// tamaños para los wraps
+/// @group Layout
+/// @type List
+$wraps: (2rem, 3rem, 4rem); // antes (20px, 30px, 40px)
+
+/// Border para los botones
+/// @group Layout
+/// @type Map
+$bordes-boton: (
+  "nada": 0,
+  "redondo": 10rem,
+  // antes 100px
+  "ovalado": 5.5rem, // antes 55px
+);
+
+/// Tamaños para los radios de border
+/// @group Layout
+/// @type List
+$bordes-radius: (1.2rem, 2.4rem, 3.2rem); // antes (12px, 24px, 32px)
+
+/// Tamaños para el media (pantallas)
+/// @group Layout
+/// @type Map
+$sizes: (
+  small: 576px,
+  // breakpoints se quedan en px
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px,
+  xxlarge: 1400px,
+);
+
+/// ancho de fuente
+/// @type Number
+/// @group Fuentes
+$weights: (300, 600, 900);
+
+/// Fuente principal de la aplicación
+/// @type List
+/// @group Fuentes
+$fuente-principal: Arial, sans-serif;
+
+/// Tamaños grandes de fuente
+/// @type List
+/// @group Fuentes
+$tamano-fuente: (4rem, 6rem, 8rem, 10rem); // antes (40px, 60px, 80px, 100px)
+
+// FUNCIONES PARA LISTAS
+
+/// Devuelve un margen de la lista $margins
+/// @param {Number} $i
+/// @return {Number}
+/// @group Layout
+@function margin($i) {
+  @return list.nth($margins, $i);
+}
+
+/// Devuelve un tipo de sección de la lista $tipo-section
+/// @param {Number} $i
+/// @return {String}
+/// @group Layout
+@function tipo-section($i) {
+  @return list.nth($tipo-section, $i);
+}
+
+/// Devuelve un color neutro de la lista $colores-neutros
+/// @param {Number} $i
+/// @return {Color}
+/// @group Colores
+@function color-neutro($i) {
+  @return list.nth($colores-neutros, $i);
+}
+
+/// Devuelve un tamaño de wrap de la lista $wraps
+/// @param {Number} $i
+/// @return {Number}
+/// @group Layout
+@function wrap($i) {
+  @return list.nth($wraps, $i);
+}
+
+/// Devuelve un radio de borde de la lista $bordes-radius
+/// @param {Number} $i
+/// @return {Number}
+/// @group Layout
+@function border-radius($i) {
+  @return list.nth($bordes-radius, $i);
+}
+
+/// Devuelve un peso de fuente de la lista $weights
+/// @param {Number} $i
+/// @return {Number}
+/// @group Fuentes
+@function weight($i) {
+  @return list.nth($weights, $i);
+}
+
+/// Devuelve un tamaño de fuente de la lista $tamano-fuente
+/// @param {Number} $i
+/// @return {Number}
+/// @group Fuentes
+@function tamano-fuente($i) {
+  @return list.nth($tamano-fuente, $i);
+}

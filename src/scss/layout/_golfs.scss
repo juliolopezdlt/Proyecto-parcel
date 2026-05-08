@@ -1,0 +1,7 @@
+@use "../abstracts/" as core;
+
+.golf {
+  grid-row: 1/-1;
+  @include core.centrar(column, center, flex-end);
+  align-items: center;
+}

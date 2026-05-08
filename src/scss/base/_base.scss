@@ -1,0 +1,13 @@
+@use "../abstracts/" as core;
+
+html {
+  font-size: 62.5%; //esto hace que un rem sean
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: core.$color-secundario;
+  font-size: 1.6rem; //y luego se multiplica por 1.6 en el body para calcularlo perfectamente
+}

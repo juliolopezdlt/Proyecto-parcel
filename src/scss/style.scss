@@ -1,0 +1,11 @@
+@use "abstracts";
+@use "layout/nav"; // Importas las navegaciones
+// 2. Estilos base
+@use "layout/header";
+@use "layout/layout";
+@use "layout/products";
+@use "componentes/golf";
+@use "componentes/product";
+@use "base";
+@use "componentes";
+@use "layout/footer";

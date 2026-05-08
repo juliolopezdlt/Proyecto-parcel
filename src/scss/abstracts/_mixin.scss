@@ -1,0 +1,184 @@
+@use "variables" as vars;
+@use "sass:map";
+
+/// @group Layout
+/// @example scss - uso del reset
+///     .footer {
+///       @include core.reset()
+///     }
+@mixin reset {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/// @group Layout
+/// @param {String} $direccion [row] - direeccion del flex
+/// @param {String} $justifica [center] - centrar
+/// @param {String} $alinea [center] - centrar
+/// @example scss - uso del mixin de flex
+///     .footer{
+///       @include core.centrar(row,center,center);
+///     }
+@mixin centrar($direccion: row, $justifica: center, $alinea: center) {
+  display: flex;
+  flex-direction: $direccion;
+  justify-content: $justifica;
+  align-items: $alinea;
+}
+
+/// @group Components
+/// @example scss - uso del enlaces-nav
+///     .footer{
+///       @include core.enlaces-nav();
+///     }
+@mixin enlaces-nav($tamanio: vars.$fuente-xs) {
+  color: map.get(vars.$colores, "rojo");
+  font-size: $tamanio;
+  margin: 0.4rem; // antes 4px → 4 / 10 = 0.4rem
+  text-decoration: none;
+  font-family: vars.$fuente-principal;
+}
+
+/// @group Components
+/// @example scss - uso del enlaces-nav
+///     .footer{
+///       @include core.hover-visited();
+///     }
+@mixin hover-visited($color: vars.$color-secundario) {
+  color: $color;
+}
+
+/// @group Layout
+/// @param {float} $min-size [9rem] - talla minima
+/// @param {float} $gap [1.5rem] - gap
+/// @example scss - uso del mixin de grid flexible
+///     .footer{
+///       @include core.grid-flexible(9,1.5);
+///     }
+@mixin grid-flexible($columns: 2, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat($columns, 1fr);
+  gap: $gap;
+}
+
+/// @group Responsive
+/// @param {String} $clave
+/// @example scss - uso del media
+///     .footer{
+///       @include core.media(200);
+///     }
+@mixin media($clave) {
+  $size: map.get(vars.$sizes, $clave);
+  @media screen and (max-width: $size) {
+    @content;
+  }
+}
+
+/// @group Responsive
+/// @param {String} $clave
+/// @example scss - uso del media
+///     .footer{
+///       @include core.media-min(100);
+///     }
+@mixin media-min($clave) {
+  $size: map.get(vars.$sizes, $clave);
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
+
+///ancho completo del contenedor
+/// @group Layout
+/// @example scss - uso ocuparAncho
+///     .banner {
+///       @include core.ocuparAncho();
+///     }
+@mixin ocuparAncho() {
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+///hace un boton con estilos base del proyecto
+/// @group Components
+/// @param {Color} $color[black] - color de fondo del boton
+/// @param {Color} $color-letra [vars.$enlace-visitado] - color del texto
+/// @example scss - uso del enlaces-nav
+///     .btn-primario{
+///       @include core.boton(red,white);
+///     }
+@mixin boton($color: black, $color-letra: vars.$enlace-visitado) {
+  background-color: $color;
+  color: $color-letra;
+  border: none;
+  padding: 1rem 2.3rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  @include border_radius(3, vars.$enlace-visitado);
+}
+
+/// Aplica bordes y border-radius
+/// @group Components
+/// @param {Number} $numero [2] - radio del borde
+/// @param {Color} $color  [vars.color-primario] - color del borde
+/// @example scss - uso del mixin border-radius
+///     .tarjeta{
+///       @include core.border_radius(3,blue);
+///     }
+@mixin border_radius($numero: 2, $color: vars.$color-primario) {
+  border: 0.1rem solid $color;
+  border-radius: vars.border-radius($numero);
+}
+
+/// Mixin para layout_basico
+/// @group Layout
+/// @example scss - uso del mixin layout-basico
+///     .container{
+///       @include core.layout-basico();
+///     }
+@mixin layout-basico() {
+  display: grid;
+  grid-template-columns:
+    minmax(6rem, 1fr) repeat(8, minmax(min-content, 16rem))
+    minmax(6rem, 1fr);
+  grid-row-gap: 1.6rem;
+}
+
+/// Genera los estilos de la navegacion de nav2, que es el nav principal
+/// @group Components
+/// @example scss - uso del mixin navigation
+///     .nav {
+///       @include core.navigation();
+///     }
+@mixin navigation() {
+  &-list {
+    @include centrar(row, space-between, center);
+    gap: 1rem;
+    list-style: none;
+    flex-wrap: vars.wrap(1);
+  }
+
+  &-item {
+    list-style-type: none;
+    &:hover .menu {
+      display: block;
+    }
+  }
+
+  &-link {
+    @include enlaces-nav(1.5rem);
+    color: vars.$enlace-visitado;
+    font-weight: vars.weight(2);
+    font-style: italic;
+    align-items: center;
+    &:hover,
+    &:visited:hover {
+      @include hover-visited(vars.$color-secundario);
+    }
+    &:visited {
+      @include hover-visited(map.get(vars.$colores, "blanco-roto"));
+    }
+  }
+}

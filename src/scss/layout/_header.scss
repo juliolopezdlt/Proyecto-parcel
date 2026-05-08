@@ -1,0 +1,28 @@
+@use "../abstracts" as core;
+
+.header {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: 4rem 4rem;
+  background-color: core.$color-primario;
+  padding: 0;
+  width: 100%;
+  @include core.media(small) {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+
+    .logo {
+      margin-top: 1rem;
+      grid-column: 2;
+    }
+  }
+
+  .logo {
+    grid-row: 2/3;
+    grid-column: 1 / 2;
+    width: 8rem;
+    @include core.centrar(row, flex-start, center);
+    margin-left: 1rem;
+    height: 3rem;
+  }
+}

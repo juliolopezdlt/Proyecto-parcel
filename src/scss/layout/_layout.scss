@@ -1,0 +1,7 @@
+@use "../abstracts" as core;
+
+.container {
+  @include core.layout-basico();
+  background-color: core.$color-terciario;
+  background-color: core.$color-secundario;
+}
