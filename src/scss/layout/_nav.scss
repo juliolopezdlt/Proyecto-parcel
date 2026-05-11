@@ -9,6 +9,11 @@
   width: 100%;
   height: 3rem; // antes 30px → 30 / 10 = 3rem
   background-color: core.$color-secundario;
+  //entre el small y el medium
+  @media screen and (min-width: #{map.get(core.$sizes, small)}) and (max-width: #{map.get(core.$sizes, medium)}) {
+    @include core.centrar(row, center, center);
+    margin-right: core.margin(3);
+  }
   @include core.media(small) {
     grid-column: 1;
     grid-row: 1;
@@ -46,6 +51,10 @@
   @include core.navigation();
   .second-nav-list {
     justify-content: center; // sobreescribe el space-between del mixin
+  }
+  @media screen and (min-width: #{map.get(core.$sizes, small)}) and (max-width: #{map.get(core.$sizes, medium)}) {
+    @include core.centrar(row, flex-end, center);
+    margin-right: core.margin(3);
   }
   @include core.media(small) {
     grid-column: 1;

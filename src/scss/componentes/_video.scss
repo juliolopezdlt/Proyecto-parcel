@@ -23,21 +23,30 @@
     z-index: 1;
     color: core.$color-primario;
     text-align: left;
+    @include core.media(small) {
+      @include core.centrar(column, center, center);
+    }
 
     h1 {
       font-size: core.$fuente-l;
+      color: core.$color-terciario;
       font-weight: core.weight(3);
       text-transform: uppercase;
       margin: 0 0 0.5rem 0;
+      @include core.media(small) {
+        font-size: core.$fuente-m;
+        text-align: center;
+      }
     }
 
     p {
       font-size: core.$fuente-s;
       margin: 0 0 1.5rem 0;
+      color: core.$color-terciario;
     }
 
     button {
-      @include core.boton();
+      @include core.boton(core.$enlace-visitado, core.$color-primario);
 
       &:hover {
         background-color: core.$color-terciario;

@@ -19,9 +19,9 @@
     text-align: center;
     justify-content: center;
     &__button {
-      @include core.boton(core.$color-terciario, core.$color-primario);
+      @include core.boton(core.$enlace-visitado, core.$color-primario);
       &:hover {
-        background-color: core.$enlace-visitado;
+        background-color: core.$color-terciario;
       }
     }
   }

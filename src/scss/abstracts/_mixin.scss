@@ -62,6 +62,20 @@
   gap: $gap;
 }
 
+/// genera un grid responsivo con auto-fit
+/// @group Layout
+/// @param {Length} $min [150px] - ancho minimo de cada columna
+/// @param {Length} $gap [1.5rem] - espacio entre columnas
+/// @example scss - uso del mixin grid-responsivo
+///     .footer-content{
+///       @include core.grid-responsivo(150px, 2rem);
+///     }
+@mixin grid-responsivo($min: 150px, $gap: 1.5rem) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: $gap;
+}
+
 /// @group Responsive
 /// @param {String} $clave
 /// @example scss - uso del media

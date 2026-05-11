@@ -31,6 +31,9 @@
     margin-bottom: core.margin(5);
     gap: 1.8rem; //18 px antes
     box-sizing: border-box; //para que el padding no se salga de la card
+    @include core.media(small) {
+      @include core.centrar(column, center, center);
+    }
   }
   &__tittle {
     color: core.$color-terciario;
@@ -45,7 +48,7 @@
     font-size: 2rem; //antes 20px
   }
   &__boton {
-    @include core.boton(white, black);
+    @include core.boton(core.$enlace-visitado, core.$color-primario);
 
     &:hover {
       background-color: core.$enlace-visitado;

@@ -24,12 +24,12 @@
     margin-top: core.margin(2);
   }
   &-content {
-    @include core.centrar(row, flex-start, flex-start);
+    @include core.grid-responsivo(150px, 2rem);
     margin-top: core.margin(3);
     margin-bottom: core.margin(5);
     gap: 8rem; // antes 80px → 80 / 10 = 8rem
     list-style: none;
-    margin-left: core.margin(5);
+
     &-list {
       list-style: none;
       gap: 1.2rem; //antes 12px
@@ -47,16 +47,15 @@
         margin-bottom: core.margin(5);
       }
     }
-
-    p {
-      position: absolute; //para que tenga su propia posicion independientemente del container del footer
-      font-size: core.$fuente-xs;
-      @include core.ocuparAncho();
-      @include core.centrar(row, flex-end, center);
-      margin-right: core.margin(5);
-    }
   }
   p {
     font-size: core.$fuente-xs;
+    color: map.get(core.$colores, "gris-claro");
+    text-align: right;
+    padding-right: core.margin(5);
+  }
+  .footer__text {
+    font-size: core.$fuente-xs;
+    text-align: center;
   }
 }
